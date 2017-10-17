@@ -1,0 +1,90 @@
+<h2>Event Manager</h2>
+
+Here are some of the events in your state:
+
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Date</th>
+			<th>City</th>
+			<th>State</th>
+			<th>Host</th>
+			<th>Options</th>
+		</tr>
+	</thead>	
+	<tbody>
+		<% @near_events.each do |event| %>
+		<tr> 
+			<td><a href="<%= event_detail_path id=event.id %>"><%= event.name %></a></td>
+			<td><%= event.date %></td>
+			<td><%= event.city %></td>
+			<td><%= event.st %></td>
+			<td><%= event.user.firstname %></td>
+			<td>WIP</td>
+		<tr>
+		<% end %>	
+	</tbody>
+
+</table>
+
+Here are some of the events in other states:
+
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Date</th>
+			<th>City</th>
+			<th>State</th>
+			<th>Host</th>
+			<th>Options</th>
+		</tr>
+	</thead>	
+	<tbody>
+		<% @far_events.each do |event|%>
+		<tr> 
+			<td><a href="<%= event_detail_path id=event.id %>"><%= event.name %></a></td>
+			<td><%= event.date %></td>
+			<td><%= event.city %></td>
+			<td><%= event.st %></td>
+			<td><%= event.user.firstname %></td>
+			<td>WIP</td>
+		<tr>
+		<% end %>
+	</tbody>
+</table>
+
+<h3>Add a New Event</h3>
+
+<form class="form" action="/events/create" method="post">
+<input type="hidden" name="authenticity_token" placeholder="<%= form_authenticity_token %>">
+<input type="hidden" name="event[user]" value="<%= @current_user %>">
+
+	<table>
+		<thead>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Name:</td> |
+				<td><input type="text" name="event[name]"></td>
+			</tr>
+			<tr>
+				<td>Date:</td>
+				<td><input type="date" name="event[date]"></td>
+			</tr>
+			<tr>
+				<td>City:</td>
+				<td><input type="text" name="event[location]"></td>
+			</tr>
+			<tr>
+				<td>Country</td>
+				<td><select name="user[country]">	
+					<% @countries.each do |country| %>
+					<option value="<%= country %>"><%= country %></option><% end %></select></td>
+			</tr>
+		</tbody>
+	</table>
+	<input type="submit" value="Submit">
+</form>
+

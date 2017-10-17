@@ -1,0 +1,28 @@
+
+  <h1>Register</h1>
+  <p>Please register to join our community.</p> 
+
+
+
+<form class="form" action="register" method="post">
+<input type="hidden" name="authenticity_token" placeholder="<%= form_authenticity_token %>">
+	
+	
+		<p><input type="text" name="user[firstname]" placeholder="First Name"></p>
+		
+		<p><input type="text" name="user[lastname]" placeholder="Last Name"></p>
+			
+		<p><input type="email" name="user[email]" placeholder="Email"></p>
+
+		<p><input type="location" name="user[location]" placeholder="Location"></p>
+
+		<p>Country:<select name="user[country]">
+					<% @countries.each do |country| %>
+					<option value="<%= country %>"><%= country %></option><% end %></select></p>
+	
+		<p><input type="password" name="user[password]" placeholder="Password"></p>
+				
+		<p><input type="password" name="user[password_confirmation]" placeholder="Confirm Password"></p>	
+	
+	<button type="submit">Register</button>	
+</form>
