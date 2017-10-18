@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  get 'comments/index'
+
+  get 'comments/new'
+
+  get 'comments/create' => 'comments#create', as: 'add_comment'
+
+  get 'comments/show'
+
+  get 'comments/edit'
+
+  get 'comments/update'
+
+  get 'comments/delete'
+
   get 'guestlist/index'
 
   get 'guestlist/new'

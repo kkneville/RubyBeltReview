@@ -7,3 +7,40 @@
 
 <h3>People who are attending this event:</h3>
 
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Location</th>
+			<th>Country</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @guests.each do |guest| %>
+		<tr>
+			<td><%= guest.firstname %> <%= guest.lastname %></td>
+			<td><%= guest.location %></td>
+			<td><%= guest.country%></td>
+		<tr>
+		<% end %>	
+	</tbody>
+</table>
+
+<h3> Comments: </h3>
+
+<% @comments.each do |comment| %>
+<p> ---------------------- </p>
+<p> <%= comment.user.firstname %> says: <%= comment.content %> </p>
+<% end %>
+
+
+<h3>Add a Comment </h3>
+
+<form class="form" action="/comments/create" method="post">
+<input type="hidden" name="authenticity_token" placeholder="<%= form_authenticity_token %>">
+<input type="hidden" name="event_id" value="<%= @event.id %>">
+
+<textarea placeholder="Your comment here..."></textarea>
+
+<button type="submit">Submit</button>
+</form>

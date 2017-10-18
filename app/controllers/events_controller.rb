@@ -7,7 +7,6 @@ class EventsController < ApplicationController
     @countries = ["US", "TX", "UK", "CH", "CAN", "DE", "FR", "DM", "SW", "IT", "KE", "SA"]
     @guestlists = Guestlist.all
     puts @guestlists
-    puts current_user.parties
  end
 
   def new
@@ -21,7 +20,7 @@ class EventsController < ApplicationController
         return redirect_to events_path
       end
       
-      flash[:errors] = event.errors.full_messages    
+      flash[:errors] = @event.errors.full_messages    
 
       return redirect_to :back
     end
@@ -30,7 +29,8 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @attending = User.all
+    @guests = User.all
+    @comments = Comment.all.where(event_id: @event.id)
   end
 
   def edit
