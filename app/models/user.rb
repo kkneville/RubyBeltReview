@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   before_save :downcase_email
   has_many :events
   has_many :guestlists
-  has_many :parties, through: :guestlists	
+  has_many :parties, through: :guestlists, source: :party
 
   def downcase_email
   	self.email.downcase!

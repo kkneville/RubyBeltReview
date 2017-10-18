@@ -3,7 +3,7 @@ require 'date'
 class Event < ActiveRecord::Base
   belongs_to :user, dependent: :destroy
   has_many :guestlists
-  has_many :guests, through: :guestlists
+  has_many :guests, through: :guestlists, source: :guest
   validates :name, :location, :country, presence: :true
   validates :date, presence: :true
 

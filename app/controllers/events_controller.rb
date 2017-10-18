@@ -7,6 +7,7 @@ class EventsController < ApplicationController
     @countries = ["US", "TX", "UK", "CH", "CAN", "DE", "FR", "DM", "SW", "IT", "KE", "SA"]
     @guestlists = Guestlist.all
     puts @guestlists
+    puts current_user.parties
  end
 
   def new

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get 'comments/new'
 
-  get 'comments/create' => 'comments#create', as: 'add_comment'
+  post 'comments/create' => 'comments#create', as: 'add_comment'
 
   get 'comments/show'
 
