@@ -11,17 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018134852) do
-
-  create_table "attendances", force: :cascade do |t|
-    t.integer  "attending_id"
-    t.integer  "attends_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "attendances", ["attending_id"], name: "index_attendances_on_attending_id"
-  add_index "attendances", ["attends_id"], name: "index_attendances_on_attends_id"
+ActiveRecord::Schema.define(version: 20171018172636) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
@@ -35,15 +25,15 @@ ActiveRecord::Schema.define(version: 20171018134852) do
 
   add_index "events", ["user_id"], name: "index_events_on_user_id"
 
-  create_table "parties", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "event_id"
+  create_table "guestlists", force: :cascade do |t|
+    t.integer  "guest_id"
+    t.integer  "party_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "parties", ["event_id"], name: "index_parties_on_event_id"
-  add_index "parties", ["user_id"], name: "index_parties_on_user_id"
+  add_index "guestlists", ["guest_id"], name: "index_guestlists_on_guest_id"
+  add_index "guestlists", ["party_id"], name: "index_guestlists_on_party_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "firstname"

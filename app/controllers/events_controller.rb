@@ -5,10 +5,9 @@ class EventsController < ApplicationController
     @far = Event.where.not(country: current_user.country)
 
     @countries = ["US", "TX", "UK", "CH", "CAN", "DE", "FR", "DM", "SW", "IT", "KE", "SA"]
-    @joined_events = Attendance.where(attending_id: current_user.id)
-    puts @joined_events
-
-
+    @guestlists = Guestlist.all
+    puts @guestlists
+    puts current_user.parties
  end
 
   def new

@@ -1,17 +1,17 @@
 Rails.application.routes.draw do
-  get 'attendances/index'
+  get 'guestlist/index'
 
-  get 'attendances/new'
+  get 'guestlist/new'
 
-  get 'attendances/create' => 'attendances#create', as: "join_event"
+  get 'guestlist/create' => 'guestlist#create', as: "join_event"
 
-  get 'attendances/show'
+  get 'guestlist/show'
 
-  get 'attendances/edit'
+  get 'guestlist/edit'
 
-  get 'attendances/update'
+  get 'guestlist/update'
 
-  get 'attendances/delete'
+  get 'guestlist/delete'
 
   get 'events' => 'events#index', as: 'events'
 

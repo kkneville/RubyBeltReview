@@ -2,8 +2,8 @@ require 'date'
 
 class Event < ActiveRecord::Base
   belongs_to :user, dependent: :destroy
-  has_many :attendances
-  has_many :attends, through: :attendances
+  has_many :guestlists
+  has_many :guests, through: :guestlists
   validates :name, :location, :country, presence: :true
   validates :date, presence: :true
 

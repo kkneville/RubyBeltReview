@@ -3,7 +3,9 @@ class UsersController < ApplicationController
   end
 
   def new
-    76
+    if current_user
+      return redirect_to events_path
+    end  
     @countries = ["US", "TX", "UK", "CH", "CAN", "DE", "FR", "DM", "SW", "IT", "KE", "SA"]
     return render "users/new.html.erb"
   end
