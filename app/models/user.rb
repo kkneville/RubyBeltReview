@@ -15,5 +15,16 @@ class User < ActiveRecord::Base
   def downcase_email
   	self.email.downcase!
   end 
+
+  def update_user(params)
+    user = User.find(current_user.id)
+    user.firstname = params[:firstname]
+    user.lastname = params[:lastname]
+    user.email = params[:email]
+    user.location = params[:location]
+    user.country = params[:country]
+    user.save
+    return user
+  end 
   
 end

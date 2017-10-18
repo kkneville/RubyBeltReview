@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
   belongs_to :user, dependent: :destroy
-  validates :name, :city, :st, presence: :true
+  validates :name, :location, :country, presence: :true
 
 end

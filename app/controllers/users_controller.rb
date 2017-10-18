@@ -8,7 +8,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    print user_params
     user = User.new(user_params)
     if user.valid?
       user.save
@@ -22,8 +21,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(session[:user_id])
-    @person = User.find(params[:id])
+    @countries = ["US", "TX", "UK", "CH", "CAN", "DE", "FR", "DM", "SW", "IT", "KE", "SA"]
+    @user = current_user
     return render "/users/show.html.erb"
   end 
 
@@ -31,6 +30,11 @@ class UsersController < ApplicationController
   end
 
   def update
+    user = update_user(user_params)
+    if user.valid?
+      user.save
+    end  
+    return redirect_to "/showuser"  
   end
 
   def delete
@@ -38,6 +42,17 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:firstname, :lastname, :email, :city, :state, :password, :password_confirmation)
+      params.require(:user).permit(:firstname, :lastname, :email, :location, :country, :password, :password_confirmation)
     end 
+
+    def update_user(params)
+    user = User.find(current_user.id)
+    user.firstname = params[:firstname]
+    user.lastname = params[:lastname]
+    user.email = params[:email]
+    user.location = params[:location]
+    user.country = params[:country]
+    user.save
+    return user
+  end 
 end

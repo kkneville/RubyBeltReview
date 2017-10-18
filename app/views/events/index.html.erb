@@ -1,25 +1,25 @@
 <h2>Event Manager</h2>
 
-Here are some of the events in your state:
+Here are some of the events in your countries:
 
 <table>
 	<thead>
 		<tr>
 			<th>Name</th>
 			<th>Date</th>
-			<th>City</th>
-			<th>State</th>
+			<th>Location</th>
+			<th>Country</th>
 			<th>Host</th>
 			<th>Options</th>
 		</tr>
 	</thead>	
 	<tbody>
-		<% @near_events.each do |event| %>
+		<% @close.each do |event| %>
 		<tr> 
 			<td><a href="<%= event_detail_path id=event.id %>"><%= event.name %></a></td>
 			<td><%= event.date %></td>
-			<td><%= event.city %></td>
-			<td><%= event.st %></td>
+			<td><%= event.location %></td>
+			<td><%= event.country %></td>
 			<td><%= event.user.firstname %></td>
 			<td>WIP</td>
 		<tr>
@@ -28,26 +28,26 @@ Here are some of the events in your state:
 
 </table>
 
-Here are some of the events in other states:
+Here are some of the events in other Countries:
 
 <table>
 	<thead>
 		<tr>
 			<th>Name</th>
 			<th>Date</th>
-			<th>City</th>
-			<th>State</th>
+			<th>Location</th>
+			<th>Country</th>
 			<th>Host</th>
 			<th>Options</th>
 		</tr>
 	</thead>	
 	<tbody>
-		<% @far_events.each do |event|%>
+		<% @far.each do |event|%>
 		<tr> 
 			<td><a href="<%= event_detail_path id=event.id %>"><%= event.name %></a></td>
 			<td><%= event.date %></td>
-			<td><%= event.city %></td>
-			<td><%= event.st %></td>
+			<td><%= event.location %></td>
+			<td><%= event.country %></td>
 			<td><%= event.user.firstname %></td>
 			<td>WIP</td>
 		<tr>
@@ -59,8 +59,6 @@ Here are some of the events in other states:
 
 <form class="form" action="/events/create" method="post">
 <input type="hidden" name="authenticity_token" placeholder="<%= form_authenticity_token %>">
-<input type="hidden" name="event[user]" value="<%= @current_user %>">
-
 	<table>
 		<thead>
 		</thead>
@@ -79,7 +77,7 @@ Here are some of the events in other states:
 			</tr>
 			<tr>
 				<td>Country</td>
-				<td><select name="user[country]">	
+				<td><select name="event[country]">	
 					<% @countries.each do |country| %>
 					<option value="<%= country %>"><%= country %></option><% end %></select></td>
 			</tr>

@@ -9,7 +9,7 @@
 <body>
 <p><% if current_user %>
 	Logged in as <%= current_user.firstname %> |
-	<a href="<%= user_path current_user.id  %>">Edit Profile</a> |
+	<%= link_to "Edit Profile", user_path(current_user.id)  %> |
 	<a href="<%= events_path current_user.id  %>">Events Dashboard</a> |
 	<a href="<%= logout_path %>" data-method="delete">Logout</a>
 	<% else %>

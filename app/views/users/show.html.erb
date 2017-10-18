@@ -1,15 +1,18 @@
 <h2> Profile for <%= @user.firstname %></h2>
 
-<form class="form" action="update" method="post">
+<form class="form" action="<%= update_user_path %>" method="post">
 
 <input type="hidden" name="authenticity_token" placeholder="<%= form_authenticity_token %>">
 <input type="hidden" name="_method" value="patch">
 
-	<p>First Name:<input type="text" name="firstname" value="<%= @user.firstname %>"></p>
-	<p>Last Name:<input type="text" name="lastname" value="<%= @user.lastname %>"></p>
-	<p>Email:<input type="text" name="email" value="<%= @user.email %>"></p>
-	<p>City:<input type="text" name="city" value="<%= @user.city %>"></p>
-	<p>State:<input type="text" name="state" value="<%= @user.state %>"></p>
+	<p>First Name:<input type="text" name="user[firstname]" value="<%= @user.firstname %>"></p>
+	<p>Last Name:<input type="text" name="user[lastname]" value="<%= @user.lastname %>"></p>
+	<p>Email:<input type="text" name="user[email]" value="<%= @user.email %>"></p>
+	<p>Location:<input type="text" name="user[location]" value="<%= @user.location %>"></p>
+	<p>Country:<select name="user[country]">
+					<option value="<%= @user.country %>"><%= @user.country %></option>
+					<% @countries.each do |country| %>
+					<option value="<%= country %>"><%= country %></option><% end %></select></p>
 	<input type="submit" value="Submit">
 
 </form>

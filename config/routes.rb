@@ -33,7 +33,7 @@ Rails.application.routes.draw do
 
   post 'register' => 'users#create', as: 'register'
 
-  get 'show/:id' => 'users#show', as: 'user'
+  get 'showuser' => 'users#show', as: 'user'
 
   get 'users/edit'
 

@@ -1,12 +1,13 @@
 class EventsController < ApplicationController
   
   def index
-    @current_user = current_user
-    country = @current_user.country
-    print country
+    # @near_events = Event.where('country == ?', country).order(:date)
+    # @far_events = Event.where('country != ?', country).order(:date)
 
-    @near_events = Event.where('country == ?', country).order(:date)
-    @far_events = Event.where('country != ?', country).order(:date)
+    @close = Event.where(country: current_user.country)
+    print @close
+    @far = Event.where.not(country: current_user.country)
+    print @far
 
     @countries = ["US", "TX", "UK", "CH", "CAN", "DE", "FR", "DM", "SW", "IT", "KE", "SA"]
     # return render "events/index.html.erb"
@@ -15,21 +16,20 @@ class EventsController < ApplicationController
   def new
   end
 
-  def create
-    @event = Event.new(event_params)
-    @event.user = current_user
-    return event
-    print event
-    if event.valid?
-      event.save
-      session[:event_id]= event.id
-      return redirect_to index_path
-    end
-    
-    flash[:errors] = event.errors.full_messages    
+   def create
+      @event = Event.new(event_params)
+      if @event.valid?
+        @event.save
+        session[:event_id]= @event.id
+        return redirect_to index_path
+      end
+      
+      flash[:errors] = event.errors.full_messages    
 
-    return redirect_to :back
-  end
+      return redirect_to :back
+    end
+
+  
 
   def show
     @event = Event.find(params[:id])
@@ -47,7 +47,7 @@ class EventsController < ApplicationController
 
   private
     def event_params
-      params.require(:event).permit(:name, :date, :city, :st, :user)
+      params.require(:event).permit(:name, :date, :location, :country).merge(user: current_user)
     end 
   
 end
