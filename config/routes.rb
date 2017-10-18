@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  get 'attendances/index'
+
+  get 'attendances/new'
+
+  get 'attendances/create' => 'attendances#create', as: "join_event"
+
+  get 'attendances/show'
+
+  get 'attendances/edit'
+
+  get 'attendances/update'
+
+  get 'attendances/delete'
+
   get 'events' => 'events#index', as: 'events'
 
   get 'events/new'
@@ -7,11 +21,11 @@ Rails.application.routes.draw do
 
   get 'show/:id' => 'events#show', as: "event_detail"
 
-  get 'events/edit'
+  get 'events/edit' => 'events#edit', as: 'edit_event'
 
   get 'events/update'
 
-  get 'events/delete'
+  delete 'events/delete' => 'event#delete', as: "delete_event"
 
   get 'sessions/index'
 

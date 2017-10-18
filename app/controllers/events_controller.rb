@@ -11,6 +11,8 @@ class EventsController < ApplicationController
 
     @countries = ["US", "TX", "UK", "CH", "CAN", "DE", "FR", "DM", "SW", "IT", "KE", "SA"]
     # return render "events/index.html.erb"
+    # @joined_events = Event.where(attending_id).contains(current_user.id)
+
  end
 
   def new
@@ -21,7 +23,7 @@ class EventsController < ApplicationController
       if @event.valid?
         @event.save
         session[:event_id]= @event.id
-        return redirect_to index_path
+        return redirect_to events_path
       end
       
       flash[:errors] = event.errors.full_messages    

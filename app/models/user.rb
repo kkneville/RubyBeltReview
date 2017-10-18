@@ -5,12 +5,8 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: :true, format: {with: email_regex}
   before_save :downcase_email
   has_many :events
-
-  attr_accessor :state
-
-  def state
-  	@state
-  end	
+  has_many :attendances
+  has_many :attends, through: :attendances	
 
   def downcase_email
   	self.email.downcase!

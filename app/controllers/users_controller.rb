@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   end
 
   def new
+    76
     @countries = ["US", "TX", "UK", "CH", "CAN", "DE", "FR", "DM", "SW", "IT", "KE", "SA"]
     return render "users/new.html.erb"
   end

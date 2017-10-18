@@ -3,6 +3,9 @@ class SessionsController < ApplicationController
   end
 
   def new
+    if current_user
+      return redirect_to events_path
+    end  
   end
 
   def create

@@ -1,6 +1,6 @@
 <h2>Event Manager</h2>
 
-Here are some of the events in your countries:
+Here are some of the events in your country:
 
 <table>
 	<thead>
@@ -21,14 +21,21 @@ Here are some of the events in your countries:
 			<td><%= event.location %></td>
 			<td><%= event.country %></td>
 			<td><%= event.user.firstname %></td>
-			<td>WIP</td>
+			<td>
+			<% if event.user == current_user %>
+			<%= link_to "Edit", edit_event_path %> 
+			<%= link_to "Delete", delete_event_path, data_method: :delete %>
+			<% else %>
+			<%= link_to "Join", join_event_path, :id => event.id, data_method: :post %>
+			<% end %> 	
+			</td>
 		<tr>
 		<% end %>	
 	</tbody>
 
 </table>
 
-Here are some of the events in other Countries:
+Here are some of the events in other countries:
 
 <table>
 	<thead>
@@ -49,7 +56,14 @@ Here are some of the events in other Countries:
 			<td><%= event.location %></td>
 			<td><%= event.country %></td>
 			<td><%= event.user.firstname %></td>
-			<td>WIP</td>
+			<td>
+			<% if event.user == current_user %>
+			<%= link_to "Edit", edit_event_path %> 
+			<%= link_to "Delete", delete_event_path, data_method: :delete %>
+			<% else %>
+			<%= link_to "Join", join_event_path, event_id: event.id %>
+			<% end %> 	
+			</td>
 		<tr>
 		<% end %>
 	</tbody>
@@ -72,7 +86,7 @@ Here are some of the events in other Countries:
 				<td><input type="date" name="event[date]"></td>
 			</tr>
 			<tr>
-				<td>City:</td>
+				<td>Location:</td>
 				<td><input type="text" name="event[location]"></td>
 			</tr>
 			<tr>
