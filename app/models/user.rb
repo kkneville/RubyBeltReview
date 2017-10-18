@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   before_save :downcase_email
   has_many :events
   has_many :attendances
-  has_many :attends, through: :attendances	
+  has_many :attendings, through: :attendances	
 
   def downcase_email
   	self.email.downcase!

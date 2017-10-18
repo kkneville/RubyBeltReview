@@ -6,11 +6,9 @@ class AttendancesController < ApplicationController
   end
 
   def create
-    @user = current_user
-    @event = params[:id]
     attendance = Attendance.new
-    attendance.attending_id = @user.id
-    attendance.attends_id = @event
+    attendance.attending_id = current_user.id
+    attendance.attends_id = params[:id]
     attendance.save
     return redirect_to events_path
   end

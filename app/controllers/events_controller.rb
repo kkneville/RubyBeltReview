@@ -1,17 +1,13 @@
 class EventsController < ApplicationController
   
   def index
-    # @near_events = Event.where('country == ?', country).order(:date)
-    # @far_events = Event.where('country != ?', country).order(:date)
-
     @close = Event.where(country: current_user.country)
-    print @close
     @far = Event.where.not(country: current_user.country)
-    print @far
 
     @countries = ["US", "TX", "UK", "CH", "CAN", "DE", "FR", "DM", "SW", "IT", "KE", "SA"]
-    # return render "events/index.html.erb"
-    # @joined_events = Event.where(attending_id).contains(current_user.id)
+    @joined_events = Attendance.where(attending_id: current_user.id)
+    puts @joined_events
+
 
  end
 
