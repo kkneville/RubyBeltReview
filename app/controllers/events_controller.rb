@@ -6,8 +6,6 @@ class EventsController < ApplicationController
 
     @countries = ["US", "TX", "UK", "CH", "CAN", "DE", "FR", "DM", "SW", "IT", "KE", "SA"]
     @guestlists = Guestlist.all
-    puts @guestlists
-    puts current_user.parties
  end
 
   def new
@@ -30,7 +28,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @guests = User.all
+    @guests = @event.guests
     @comments = Comment.all.where(event_id: @event.id)
   end
 

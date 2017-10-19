@@ -25,11 +25,11 @@ Here are some of the events in your country:
 			<% if event.user == current_user %>
 			<%= link_to "Edit", edit_event_path(:id => event.id) %> 
 			<%= link_to "Delete", delete_event_path(:id => event.id), data_method: :delete %>
-			<% elsif @guestlists.include? event.id %>
-			Joined. <%= link_to "Cancel", leave_event_path(:id => event.id) %> 
+			<% elsif event.guests.include?current_user %>
+			Joined. <%= link_to "Cancel", leave_event_path(:id => event.id) %>
 			<% else %>
 			<%= link_to "Join", join_event_path(:id => event.id) %>
-			<% end %> 	
+			<% end %>  	
 			</td>
 		<tr>
 		<% end %>	
@@ -62,6 +62,8 @@ Here are some of the events in other countries:
 			<% if event.user == current_user %>
 			<%= link_to "Edit", edit_event_path(:id => event.id) %> 
 			<%= link_to "Delete", delete_event_path(:id => event.id), data_method: :delete %>
+			<% elsif event.guests.include?current_user %>
+			Joined. <%= link_to "Cancel", leave_event_path(:id => event.id) %>
 			<% else %>
 			<%= link_to "Join", join_event_path(:id => event.id) %>
 			<% end %> 	

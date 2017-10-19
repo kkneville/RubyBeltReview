@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   get 'guestlist/update'
 
-  get 'guestlist/delete'
+  get 'guestlist/delete' => 'guestlist#delete', as: 'leave_event'
 
   get 'events' => 'events#index', as: 'events'
 

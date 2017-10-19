@@ -24,6 +24,10 @@ class GuestlistController < ApplicationController
   end
 
   def delete
+    guestlist = Guestlist.where(party: params[:id])
+    puts guestlist
+    guestlist.delete
+    return redirect_to events_path
   end
 
 end

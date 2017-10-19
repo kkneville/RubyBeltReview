@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: :true, format: {with: email_regex}
   before_save :downcase_email
   has_many :events
-  has_many :guestlists
-  has_many :parties, through: :guestlists, source: :party
+  has_many :guestlists, foreign_key: :guest_id
+  has_many :parties, through: :guestlists
 
   def downcase_email
   	self.email.downcase!
