@@ -1,6 +1,36 @@
 <h2>Event Manager</h2>
 
-Here are some of the events in your country:
+
+<h3>Add a New Event</h3>
+
+<form class="form" action="/events/create" method="post">
+<input type="hidden" name="authenticity_token" placeholder="<%= form_authenticity_token %>">
+	<table>
+		<tbody>
+			<tr>
+				<td>Name:</td>
+				<td><input type="text" name="event[name]"></td>
+			</tr>
+			<tr>
+				<td>Date:</td>
+				<td><input type="date" name="event[date]"></td>
+			</tr>
+			<tr>
+				<td>Location:</td>
+				<td><input type="text" name="event[location]"></td>
+			</tr>
+			<tr>
+				<td>Country</td>
+				<td><select name="event[country]">	
+					<% @countries.each do |country| %>
+					<option value="<%= country %>"><%= country %></option><% end %></select></td>
+			</tr>
+		</tbody>
+	</table>
+	<input type="submit" value="Submit">
+</form>
+
+<h4>Here are some of the events in your country:</h4>
 
 <table>
 	<thead>
@@ -26,9 +56,9 @@ Here are some of the events in your country:
 			<%= link_to "Edit", edit_event_path(:id => event.id) %> 
 			<%= link_to "Delete", delete_event_path(:id => event.id), data_method: :delete %>
 			<% elsif event.guests.include?current_user %>
-			Joined. <%= link_to "Cancel", leave_event_path(:id => event.id) %>
+			Joined. <%= link_to "Cancel", leave_event_path(:id => event.id), :method => :delete %>
 			<% else %>
-			<%= link_to "Join", join_event_path(:id => event.id) %>
+			<%= link_to "Join", join_event_path(:id => event.id), :method => :post %>
 			<% end %>  	
 			</td>
 		<tr>
@@ -61,11 +91,11 @@ Here are some of the events in other countries:
 			<td>
 			<% if event.user == current_user %>
 			<%= link_to "Edit", edit_event_path(:id => event.id) %> 
-			<%= link_to "Delete", delete_event_path(:id => event.id), data_method: :delete %>
+			<%= link_to "Delete", delete_event_path(:id => event.id), :method => :delete %>
 			<% elsif event.guests.include?current_user %>
-			Joined. <%= link_to "Cancel", leave_event_path(:id => event.id) %>
+			Joined. <%= link_to "Cancel", leave_event_path(:id => event.id), :method => :delete %>
 			<% else %>
-			<%= link_to "Join", join_event_path(:id => event.id) %>
+			<%= link_to "Join", join_event_path(:id => event.id), :method => :post %>
 			<% end %> 	
 			</td>
 		<tr>
@@ -73,34 +103,5 @@ Here are some of the events in other countries:
 	</tbody>
 </table>
 
-<h3>Add a New Event</h3>
 
-<form class="form" action="/events/create" method="post">
-<input type="hidden" name="authenticity_token" placeholder="<%= form_authenticity_token %>">
-	<table>
-		<thead>
-		</thead>
-		<tbody>
-			<tr>
-				<td>Name:</td> |
-				<td><input type="text" name="event[name]"></td>
-			</tr>
-			<tr>
-				<td>Date:</td>
-				<td><input type="date" name="event[date]"></td>
-			</tr>
-			<tr>
-				<td>Location:</td>
-				<td><input type="text" name="event[location]"></td>
-			</tr>
-			<tr>
-				<td>Country</td>
-				<td><select name="event[country]">	
-					<% @countries.each do |country| %>
-					<option value="<%= country %>"><%= country %></option><% end %></select></td>
-			</tr>
-		</tbody>
-	</table>
-	<input type="submit" value="Submit">
-</form>
 

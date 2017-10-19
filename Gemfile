@@ -28,7 +28,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'hirb'
 gem 'rails-footnotes'
 gem 'filterrific'
-
+gem 'timeliness'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

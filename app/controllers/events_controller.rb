@@ -33,12 +33,31 @@ class EventsController < ApplicationController
   end
 
   def edit
+    @countries = ["US", "TX", "UK", "CH", "CAN", "DE", "FR", "DM", "SW", "IT", "KE", "SA"]
+    @event = Event.find(params[:id])
+    if not @event.user == current_user
+      return redirect_to events_path
+    end
+      
   end
 
   def update
+    event = Event.find(params[:id])
+    event.name = params[:name]
+    if params[:newdate]
+      event.date = params[:newdate]
+    else  
+      event.date = params[:date]
+    end
+    event.location = params[:location]
+    event.country = params[:country]
+    event.save
+    return redirect_to events_path
   end
 
   def delete
+    Event.find(params[:id]).delete
+    return redirect_to events_path
   end
 
   private

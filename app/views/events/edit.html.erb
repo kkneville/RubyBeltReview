@@ -1,2 +1,22 @@
-<h1>Events#edit</h1>
-<p>Find me in app/views/events/edit.html.erb</p>
+
+
+<form class="form" action="/events/update" method="post">
+<input type="hidden" name="authenticity_token" placeholder="<%= form_authenticity_token %>">
+<input type="hidden" name="_method" value="patch">
+<input type="hidden" name="id" value="<%= @event.id %>">
+
+<h2><input type="text" name="name" value='<%= @event.name %>'></h2>
+<p>Host: <%= @event.user.firstname %> <%= @event.user.lastname %></p>
+<p> Current Date <input type="text" name="date" value='<%= @event.date %>'></p>
+<p>New Date: <input type="date" name="newdate" value='<%= @event.date %>'></p>
+<p>Location:<input type="text" name="location" value='<%= @event.location %>'></p>
+<p>Country: <select name="country">	
+	<option value="<%= @event.country %>"><%= @event.country %></option>
+	<% @countries.each do |country| %>
+	<option value="<%= country %>"><%= country %></option>
+	<% end %></select></p>
+
+<input type="submit" value="Save">
+
+</form>
+

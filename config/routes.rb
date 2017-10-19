@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   get 'guestlist/new'
 
-  get 'guestlist/create' => 'guestlist#create', as: "join_event"
+  post 'guestlist/create' => 'guestlist#create', as: "join_event"
 
   get 'guestlist/show'
 
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   get 'guestlist/update'
 
-  get 'guestlist/delete' => 'guestlist#delete', as: 'leave_event'
+  delete 'guestlist/delete' => 'guestlist#delete', as: 'leave_event'
 
   get 'events' => 'events#index', as: 'events'
 
@@ -37,9 +37,9 @@ Rails.application.routes.draw do
 
   get 'events/edit' => 'events#edit', as: 'edit_event'
 
-  get 'events/update'
+  patch 'events/update' => 'events#update'
 
-  delete 'events/delete' => 'event#delete', as: "delete_event"
+  delete 'events/delete' => 'events#delete', as: "delete_event"
 
   get 'sessions/index'
 
